@@ -8,21 +8,14 @@ import {
 } from 'react-native';
 import Icon from 'react-native-vector-icons/Feather';
 
-import Input from '../../components/Input';
-import Button from '../../components/Button';
-
 import { useNavigation } from '@react-navigation/native';
 import { Form } from '@unform/mobile';
 import { FormHandles } from '@unform/core';
+import Button from '../../components/Button';
+import Input from '../../components/Input';
 
 import logoImg from '../../assets/logo.png';
-import {
-  Container,
-  Title,
-  BackToSignIn,
-  BackToSignInText,
-} from './styles';
-
+import { Container, Title, BackToSignIn, BackToSignInText } from './styles';
 
 const SignUp: React.FC = () => {
   const navigation = useNavigation();
@@ -49,16 +42,34 @@ const SignUp: React.FC = () => {
             </View>
 
             <Form onSubmit={handleSubmit} ref={formRef}>
-              <Input name="name" icon="user" placeholder="Nome" />
+              <Input
+                autoCapitalize="words"
+                name="name"
+                icon="user"
+                placeholder="Nome"
+              />
 
-              <Input name="email" icon="mail" placeholder="E-mail" />
+              <Input
+                autoCapitalize="none"
+                keyboardType="email-address"
+                autoCorrect={false}
+                name="email"
+                icon="mail"
+                placeholder="E-mail"
+              />
 
-              <Input name="password" icon="lock" placeholder="Senha" />
-
+              <Input
+                secureTextEntry
+                name="password"
+                icon="lock"
+                textContentType="newPassword"
+                placeholder="Senha"
+              />
             </Form>
 
-            <Button onPress={() => formRef.current?.submitForm()}>Entrar</Button>
-
+            <Button onPress={() => formRef.current?.submitForm()}>
+              Entrar
+            </Button>
           </Container>
         </ScrollView>
       </KeyboardAvoidingView>
